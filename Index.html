@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Lưu Ký</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Nút mở menu -->
+<div class="menu-toggle" onclick="toggleMenu()">
+    <i class="fa-solid fa-bars"></i>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <h2>Quản lý Lưu ký</h2>
+    <div class="menu-item active" onclick="setActive(this)">
+        <i class="fa-solid fa-piggy-bank"></i> Tiền lưu ký
+    </div>
+    <div class="menu-item" onclick="setActive(this)">
+        <i class="fa-solid fa-money-bill-wave"></i> Tiền nạp lưu ký
+    </div>
+    <div class="menu-item" onclick="setActive(this)">
+        <i class="fa-solid fa-box"></i> Danh sách đồ gửi vào
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
