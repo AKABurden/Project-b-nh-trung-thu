@@ -16,7 +16,7 @@ function Home({ addToCart }) {
 
   return (
     <div className="home page fade-in">
-      <h2>🍪 Danh mục bánh</h2>
+      <h2 className="title-black">🍪 Loại bánh</h2>
       <div className="categories">
         <Link to="/sweet" className="category">
           🍰 Bánh ngọt
@@ -47,7 +47,9 @@ function ProductList({ type, addToCart }) {
 
   return (
     <div className="product-list page fade-in">
-      <h2>{type === "sweet" ? "Bánh ngọt" : "Bánh mặn"}</h2>
+      <h2 className="title-black">
+        {type === "sweet" ? "Bánh ngọt" : "Bánh mặn"}
+      </h2>
       <div className="grid">
         {items.map((p) => (
           <div className="card zoom-in" key={p.id}>
@@ -72,21 +74,29 @@ function Cart({ cart, updateQty, clearCart }) {
     address: "",
   });
   const [paymentMethod, setPaymentMethod] = useState("cod");
-  const [accountInfo, setAccountInfo] = useState("");
+  const [walletType, setWalletType] = useState(""); // momo | zalopay
+  const [linked, setLinked] = useState(false); // trạng thái liên kết
   const navigate = useNavigate();
 
   const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+  const handleLinkWallet = (type) => {
+    setWalletType(type);
+    setLinked(true);
+    alert(`✅ Đã liên kết ví ${type.toUpperCase()} thành công!`);
+  };
 
   const handlePay = () => {
     if (!userInfo.name || !userInfo.phone || !userInfo.address) {
       alert("Vui lòng nhập đầy đủ thông tin cá nhân!");
       return;
     }
-    if (
-      (paymentMethod === "bank" || paymentMethod === "wallet") &&
-      !accountInfo.trim()
-    ) {
-      alert("Vui lòng nhập thông tin thanh toán!");
+    if (paymentMethod === "bank" && !linked) {
+      alert("Vui lòng quét QR để hoàn tất thanh toán!");
+      return;
+    }
+    if (paymentMethod === "wallet" && (!walletType || !linked)) {
+      alert("Vui lòng liên kết ví điện tử trước khi thanh toán!");
       return;
     }
     setShowModal(true);
@@ -94,11 +104,12 @@ function Cart({ cart, updateQty, clearCart }) {
 
   return (
     <div className="cart page fade-in">
-      <h2>🛒 Giỏ hàng</h2>
+      <h2 className="cart">🛒 Giỏ hàng</h2>
       {cart.length === 0 ? (
-        <p>Giỏ hàng trống.</p>
+        <p className="title-white">Giỏ hàng trống.</p>
       ) : (
         <div>
+          {/* Bảng sản phẩm */}
           <table className="cart-table">
             <thead>
               <tr>
@@ -134,6 +145,7 @@ function Cart({ cart, updateQty, clearCart }) {
             </tbody>
           </table>
 
+          {/* Thông tin khách hàng */}
           <div className="user-info">
             <h3>Thông tin khách hàng:</h3>
             <input
@@ -162,9 +174,12 @@ function Cart({ cart, updateQty, clearCart }) {
             />
           </div>
 
+          {/* Phương thức thanh toán */}
           {userInfo.name && userInfo.phone && userInfo.address && (
             <div className="payment-method">
               <h3>Chọn phương thức thanh toán:</h3>
+
+              {/* COD */}
               <label>
                 <input
                   type="radio"
@@ -175,18 +190,22 @@ function Cart({ cart, updateQty, clearCart }) {
                 Thanh toán khi nhận hàng
               </label>
 
+              {/* Bank */}
               <label>
                 <input
                   type="radio"
                   value="bank"
                   checked={paymentMethod === "bank"}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  onChange={(e) => {
+                    setPaymentMethod(e.target.value);
+                    setLinked(false);
+                  }}
                 />
-                Chuyển khoản
+                Chuyển khoản (QR)
               </label>
               {paymentMethod === "bank" && (
                 <div className="bank-payment">
-                  <p>Quét QR để thanh toán:</p>
+                  <p>Vui lòng quét QR bên dưới</p>
                   <img
                     src={QRthanhtoan}
                     alt="QR Thanh toán"
@@ -196,39 +215,80 @@ function Cart({ cart, updateQty, clearCart }) {
                       margin: "20px",
                       cursor: "pointer",
                     }}
-                    onClick={() => alert("✅ Thanh toán thành công!")}
+                    onClick={() => setLinked(true)}
                   />
+                  {linked && <p className="linked">✅ Đã quét QR</p>}
                 </div>
               )}
+
+              {/* Ví điện tử */}
               <label>
                 <input
                   type="radio"
                   value="wallet"
                   checked={paymentMethod === "wallet"}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  onChange={(e) => {
+                    setPaymentMethod(e.target.value);
+                    setLinked(false);
+                  }}
                 />
                 Ví điện tử
               </label>
               {paymentMethod === "wallet" && (
-                <input
-                  type="text"
-                  placeholder="Nhập số điện thoại ví"
-                  value={accountInfo}
-                  onChange={(e) => setAccountInfo(e.target.value)}
-                />
+                <div className="wallet-section">
+                  <h4>Chọn ví điện tử:</h4>
+                  <div className="wallet-options">
+                    <button
+                      className={`wallet-btn ${
+                        walletType === "momo" ? "active" : ""
+                      }`}
+                      onClick={() => handleLinkWallet("momo")}
+                    >
+                      <img
+                        src="https://static.ybox.vn/2021/9/4/1631757348918-1631085786958-Thi%E1%BA%BFt%20k%E1%BA%BF%20kh%C3%B4ng%20t%C3%AAn%20-%202021-09-08T002253.248.png"
+                        alt="MoMo"
+                      />
+                      {walletType === "momo" && linked
+                        ? "Đã liên kết MoMo"
+                        : "Liên kết MoMo"}
+                    </button>
+
+                    <button
+                      className={`wallet-btn ${
+                        walletType === "zalopay" ? "active" : ""
+                      }`}
+                      onClick={() => handleLinkWallet("zalopay")}
+                    >
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTlp4qW2M8xPofmuZHwEfGi9mNMWUG0zs53A&s"
+                        alt="ZaloPay"
+                      />
+                      {walletType === "zalopay" && linked
+                        ? "Đã liên kết ZaloPay"
+                        : "Liên kết ZaloPay"}
+                    </button>
+                  </div>
+                </div>
               )}
             </div>
           )}
 
+          {/* Tổng tiền + nút Thanh toán + nút chọn thêm */}
           <div className="cart-summary">
             <h3>Tổng: {total.toLocaleString()}₫</h3>
-            <button className="pay-btn" onClick={handlePay}>
-              Thanh toán
-            </button>
+            <div className="cart-actions">
+              <button className="add-more-btn" onClick={() => navigate("/")}>
+                ➕ Chọn thêm món
+              </button>
+              <button className="pay-btn" onClick={handlePay}>
+                💰 Thanh toán
+              </button>
+            </div>
           </div>
         </div>
       )}
 
+      {/* Modal xác nhận */}
       {showModal && (
         <div className="modal fade-in">
           <div className="modal-content slide-up">

@@ -109,13 +109,18 @@ footer {
 }
 .cart-table th,
 .cart-table td {
-  border: 1px solid #ddd;
+  border: 3px solid #ddd;
   padding: 10px;
   text-align: center;
 }
 .cart-table th {
   background: #ffb347;
   color: white;
+}
+.cart-table tr {
+color: #fdfdfd;
+text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+font-size: 25px;
 }
 .qty-btn {
   padding: 4px 10px;
@@ -132,23 +137,7 @@ footer {
 .qty {
   font-weight: bold;
 }
-.cart-summary {
-  margin-top: 20px;
-  text-align: right;
-}
-.pay-btn {
-  padding: 12px 20px;
-  background: #06d6a0;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.pay-btn:hover {
-  background: #05b384;
-}
+
 .user-info {
   margin-top: 20px;
   display: flex;
@@ -265,4 +254,141 @@ footer {
   font-weight: bold;
   text-align: center;
   padding: 20px;
+}
+body {
+  background: url("https://culacstudio.com/wp-content/uploads/2022/08/cho-thue-thiet-bi-chup-anh-banh-trung-thu-o-hcm-scaled-1-2048x1366.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
+}
+.title-black {
+  color: #fff;
+}
+.title-white {
+  color: #fff;
+  font-size: 20px;
+}
+.cart {
+  color: #fff;
+  font-size: px;
+}
+/* Thanh toán ví điện tử */
+.wallet-section {
+  margin: 15px 0;
+}
+
+.wallet-section h4 {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.wallet-options {
+  display: flex;
+  gap: 15px;
+}
+
+.wallet-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.wallet-btn img {
+  width: 32px;
+  height: 32px;
+}
+
+.wallet-btn:hover {
+  border-color: #ff5722;
+  background: #fff8f4;
+}
+
+.wallet-btn.active {
+  border-color: #ff5722;
+  background: #ffe1d6;
+  color: #d84315;
+  font-weight: bold;
+}
+
+.linked {
+  color: green;
+  margin-top: 10px;
+  font-weight: 500;
+}
+.add-more-btn {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 118, 118, 0.4);
+  margin-right: 15px;
+}
+
+.add-more-btn:hover {
+  background: linear-gradient(135deg, #ff4d6d, #ff1764);
+  box-shadow: 0 6px 16px rgba(255, 82, 82, 0.6);
+  transform: translateY(-2px);
+}
+
+.add-more-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 10px rgba(255, 82, 82, 0.5);
+}
+.pay-btn {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 118, 118, 0.4);
+  margin-right: 15px;
+}
+
+.pay-btn:hover {
+  background: linear-gradient(135deg, #ff4d6d, #ff1764);
+  box-shadow: 0 6px 16px rgba(255, 82, 82, 0.6);
+  transform: translateY(-2px);
+}
+
+.pay-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 10px rgba(255, 82, 82, 0.5);
+}
+.cart-summary {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column; /* xếp theo cột */
+  align-items: flex-end;  /* căn về bên phải */
+  gap: 15px;
+}
+
+.cart-summary h3 {
+  background: #fff;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  margin: 0;
+}
+
+.cart-buttons {
+  display: flex;
+  gap: 15px; /* khoảng cách giữa 2 nút */
 }
