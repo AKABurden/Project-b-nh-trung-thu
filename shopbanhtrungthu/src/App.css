@@ -148,6 +148,7 @@ font-size: 25px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  width: 70%;
 }
 .payment-method {
   margin-top: 20px;
@@ -391,4 +392,47 @@ body {
 .cart-buttons {
   display: flex;
   gap: 15px; /* khoảng cách giữa 2 nút */
+}
+.footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+.footer span {
+  margin-right: 10px;
+  font-size: 25px;
+}
+
+.fb-link {
+  display: inline-block;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.fb-link:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+.fb-icon {
+  width: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.fb-link {
+  display: inline-block;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.fb-link:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+.ins-icon {
+  width: 24px;
+  vertical-align: middle;
 }

@@ -33,13 +33,16 @@ function Home({ addToCart }) {
 function ProductList({ type, addToCart }) {
   const PRODUCTS = {
     sweet: [
-      { id: 1, name: "Nhân sầu riêng - đậu xanh", price: 160000 },
-      { id: 2, name: "Nhân mè đen", price: 140000 },
-      { id: 3, name: "Nhân sữa dừa", price: 130000 },
+      { id: 1, name: "Nhân sầu riêng - đậu xanh", price: 85000 },
+      { id: 2, name: "Trà xanh hạt sen", price: 85000 },
+      { id: 3, name: "Nhân mè đen", price: 75000 },
+      { id: 4, name: "Nhân sữa dừa", price: 75000 },
     ],
     savory: [
-      { id: 4, name: "Thập cẩm", price: 150000 },
-      { id: 5, name: "Bông lan trứng muối", price: 170000 },
+      { id: 5, name: "Thập cẩm truyền thống", price: 95000 },
+      { id: 6, name: "Thập cẩm tôm nướng ngũ vị", price: 115000 },
+      { id: 7, name: "Thập cẩm Bát bửu(Bánh Chay)", price: 85000 },
+      { id: 8, name: "Trứng muối chà bông (Hot Sale)", price: 85000 },
     ],
   };
 
@@ -383,8 +386,33 @@ export default function App() {
         </Routes>
       </main>
 
-      <footer>© SĐT Order bánh: 0762425342</footer>
-
+      <footer className="footer">
+        <span>© Order bánh: 0762425342</span>
+        <a
+          href="https://www.facebook.com/mielathienthandangeww"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fb-link"
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiXN9xSEe8unzPBEQOeAKXd9Q55efGHGB9BA&s"
+            alt="Instagram"
+            className="fb-icon"
+          />
+        </a>
+        <a
+          href="https://www.instagram.com/wgs.akdl/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ins-link"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+            alt="Instagram"
+            className="ins-icon"
+          />
+        </a>
+      </footer>
       {toast && <Toast message={toast} onClose={() => setToast("")} />}
     </div>
   );
